@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 05, 2023 at 02:11 PM
+-- Generation Time: Feb 07, 2023 at 05:21 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -44,12 +44,12 @@ INSERT INTO `tb_admin` (`id_admin`, `nama_admin`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_history_tamu`
+-- Table structure for table `tb_history_pasien`
 --
 
-CREATE TABLE `tb_history_tamu` (
-  `no_tamu` varchar(17) NOT NULL,
-  `nama_tamu` varchar(30) NOT NULL,
+CREATE TABLE `tb_history_pasien` (
+  `no_pasien` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nama_pasien` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `jenis_kelamin` varchar(12) NOT NULL,
   `alamat` text NOT NULL,
   `no_tlp` varchar(15) NOT NULL,
@@ -65,14 +65,15 @@ CREATE TABLE `tb_history_tamu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_history_tamu`
+-- Dumping data for table `tb_history_pasien`
 --
 
-INSERT INTO `tb_history_tamu` (`no_tamu`, `nama_tamu`, `jenis_kelamin`, `alamat`, `no_tlp`, `kode_kamar`, `lantai`, `no_kamar`, `tipe_kamar`, `harga_permalam`, `cek_in`, `cek_out`, `lama_menginap`, `total_biaya`) VALUES
-('11223344', 'skddkfn', 'Perempuan', 'sffgsdfgsdgf', '0835356456', '2003', 'Lantai 2', '003', 'VIP', 300000, '23-12-2016', '24-12-2016', 1, 300000),
-('141400013', 'Joni Herianto', 'Laki-laki', 'Padang', '0345938745', '1001', 'Lantai 1', '001', 'Ekonomi', 300000, '14-11-2016', '26-12-2016', 42, 12600000),
-('234213', 'ssdgfsd', 'Laki-laki', 'dfgsdfg', '59679579', '2001', 'Lantai 2', '002', 'Kelas 2', 500000, '13-12-2016', '05-02-2023', 2245, 1122500000),
-('3323040', 'Joko Suwiryo', 'Laki-laki', 'Jl. Nggimblah Secang Magelang', '081234567', '2001', 'Lantai 2', '002', 'Kelas 2', 500000, '05-02-2023', '05-02-2023', 0, 500000);
+INSERT INTO `tb_history_pasien` (`no_pasien`, `nama_pasien`, `jenis_kelamin`, `alamat`, `no_tlp`, `kode_kamar`, `lantai`, `no_kamar`, `tipe_kamar`, `harga_permalam`, `cek_in`, `cek_out`, `lama_menginap`, `total_biaya`) VALUES
+('3323040', 'Ahmad Fikri', 'Laki-laki', 'Muntilan Magelang', '0831234567890', '2001', 'Lantai 2', '002', 'Kelas 2', 500000, '06-02-2023', '06-02-2023', 0, 500000),
+('33230', 'Test', 'Laki-laki', 'Purwokerto', '08310000', '2001', 'Lantai 2', '002', 'Kelas 2', 500000, '07-02-2023', '07-02-2023', 0, 500000),
+('1234', 'Bca', 'Perempuan', 'Bandung', '980', '2003', 'Lantai 2', '003', 'Kelas 3', 300000, '07-02-2023', '07-02-2023', 0, 300000),
+('123', 'Abc', 'Laki-laki', 'Jakarta', '321', '2001', 'Lantai 2', '002', 'Kelas 2', 500000, '07-02-2023', '07-02-2023', 0, 500000),
+('123', 'surti', 'Perempuan', 'Magelang', '890', '2003', 'Lantai 2', '003', 'Kelas 3', 300000, '07-02-2023', '07-02-2023', 1, 300000);
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,6 @@ CREATE TABLE `tb_kamar` (
 --
 
 INSERT INTO `tb_kamar` (`kode_kamar`, `lantai`, `no_kamar`, `tipe_kamar`, `harga_permalam`) VALUES
-('1001', 'Lantai 1', '001', 'Kelas 1', 700000),
 ('2001', 'Lantai 2', '002', 'Kelas 2', 500000),
 ('2003', 'Lantai 2', '003', 'Kelas 3', 300000);
 
@@ -117,59 +117,18 @@ CREATE TABLE `tb_karyawan` (
 --
 
 INSERT INTO `tb_karyawan` (`id_karyawan`, `nama_karyawan`, `jenis_kelamin`, `alamat`, `no_tlp`, `password`) VALUES
-('21103007', 'Via Keisya', 'Perempuan', 'Banyumas', '085700983802', '12345'),
 ('21103098', 'Kenni Pratiwi', 'Perempuan', 'Banyumas', '083418364', '101010'),
 ('2215103004', 'Anastasya Bella', 'Perempuan', 'Jakarta Selatan', '081938173', '67890');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_makanan`
+-- Table structure for table `tb_pasien`
 --
 
-CREATE TABLE `tb_makanan` (
-  `kode_makanan` varchar(10) NOT NULL,
-  `nama_makanan` varchar(25) NOT NULL,
-  `harga_makanan` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_makanan`
---
-
-INSERT INTO `tb_makanan` (`kode_makanan`, `nama_makanan`, `harga_makanan`) VALUES
-('mkn01', 'Nasi Goreng Pedas', 15000),
-('mkn02', 'Mie Goreng Sosis', 20000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_minuman`
---
-
-CREATE TABLE `tb_minuman` (
-  `kode_minuman` varchar(10) NOT NULL,
-  `nama_minuman` varchar(25) NOT NULL,
-  `harga_minuman` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_minuman`
---
-
-INSERT INTO `tb_minuman` (`kode_minuman`, `nama_minuman`, `harga_minuman`) VALUES
-('minum01', 'Jus Jeruk', 15000),
-('minum02', 'Jusn Buah Naga', 20000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_tamu`
---
-
-CREATE TABLE `tb_tamu` (
-  `no_tamu` varchar(17) NOT NULL,
-  `nama_tamu` varchar(30) NOT NULL,
+CREATE TABLE `tb_pasien` (
+  `no_pasien` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nama_pasien` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `jenis_kelamin` varchar(12) NOT NULL,
   `alamat` text NOT NULL,
   `no_tlp` varchar(15) NOT NULL,
@@ -177,27 +136,6 @@ CREATE TABLE `tb_tamu` (
   `tgl_cek_in` varchar(10) NOT NULL,
   `jam_cek_in` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_transaksi_penjualan`
---
-
-CREATE TABLE `tb_transaksi_penjualan` (
-  `tgl_transaksi` varchar(15) NOT NULL,
-  `no_tamu` varchar(20) NOT NULL,
-  `nama_menu` varchar(30) NOT NULL,
-  `harga_menu` int NOT NULL,
-  `jml_beli` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_transaksi_penjualan`
---
-
-INSERT INTO `tb_transaksi_penjualan` (`tgl_transaksi`, `no_tamu`, `nama_menu`, `harga_menu`, `jml_beli`) VALUES
-('25-12-2016', '131300012343', 'Mie Goreng Sosis', 20000, 3);
 
 --
 -- Indexes for dumped tables
@@ -210,10 +148,10 @@ ALTER TABLE `tb_admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `tb_history_tamu`
+-- Indexes for table `tb_history_pasien`
 --
-ALTER TABLE `tb_history_tamu`
-  ADD KEY `no_tamu` (`no_tamu`),
+ALTER TABLE `tb_history_pasien`
+  ADD KEY `no_tamu` (`no_pasien`),
   ADD KEY `kode_kamar` (`kode_kamar`);
 
 --
@@ -229,22 +167,10 @@ ALTER TABLE `tb_karyawan`
   ADD PRIMARY KEY (`id_karyawan`);
 
 --
--- Indexes for table `tb_makanan`
+-- Indexes for table `tb_pasien`
 --
-ALTER TABLE `tb_makanan`
-  ADD PRIMARY KEY (`kode_makanan`);
-
---
--- Indexes for table `tb_minuman`
---
-ALTER TABLE `tb_minuman`
-  ADD PRIMARY KEY (`kode_minuman`);
-
---
--- Indexes for table `tb_tamu`
---
-ALTER TABLE `tb_tamu`
-  ADD PRIMARY KEY (`no_tamu`),
+ALTER TABLE `tb_pasien`
+  ADD PRIMARY KEY (`no_pasien`),
   ADD KEY `kode_kamar` (`kode_kamar`);
 
 --
@@ -252,16 +178,16 @@ ALTER TABLE `tb_tamu`
 --
 
 --
--- Constraints for table `tb_history_tamu`
+-- Constraints for table `tb_history_pasien`
 --
-ALTER TABLE `tb_history_tamu`
-  ADD CONSTRAINT `tb_history_tamu_ibfk_1` FOREIGN KEY (`kode_kamar`) REFERENCES `tb_kamar` (`kode_kamar`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tb_history_pasien`
+  ADD CONSTRAINT `tb_history_pasien_ibfk_1` FOREIGN KEY (`kode_kamar`) REFERENCES `tb_kamar` (`kode_kamar`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_tamu`
+-- Constraints for table `tb_pasien`
 --
-ALTER TABLE `tb_tamu`
-  ADD CONSTRAINT `tb_tamu_ibfk_1` FOREIGN KEY (`kode_kamar`) REFERENCES `tb_kamar` (`kode_kamar`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tb_pasien`
+  ADD CONSTRAINT `tb_pasien_ibfk_1` FOREIGN KEY (`kode_kamar`) REFERENCES `tb_kamar` (`kode_kamar`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
